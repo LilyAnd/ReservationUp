@@ -10,8 +10,10 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- Bootstrap CSS served from a CDN -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    rel="stylesheet">
     
 </head>
 <body>
@@ -54,6 +56,16 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
+
+                                        @if (Auth::user()->id_roles==1)
+                                        <a href="{{ route('setting') }}">
+                                            My Profile
+                                        </a>
+                                        @elseif (Auth::user()->id_roles==2)
+                                        <a href="{{ route('admin.setting') }}">
+                                            My Profile
+                                        </a>
+                                        @endif
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -64,6 +76,7 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
+                                        
                                 </ul>
                             </li>
                         @endif
@@ -77,7 +90,7 @@
         @yield('content')
     </div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

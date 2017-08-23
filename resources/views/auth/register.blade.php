@@ -61,6 +61,44 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="address" class="col-md-4 control-label">Address</label>
+
+                            <div class="col-md-6">
+                                <input id="address" type="text" class="form-control" name="address" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone_number" class="col-md-4 control-label">Phone Number</label>
+
+                            <div class="col-md-6">
+                                <input id="phone_number" type="text" class="form-control" name="phone_number" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="gender" class="col-md-4 control-label">Gender</label>
+
+                            <div class="col-md-6">
+                                <select id="gender" class="form-control" name="gender" required> 
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>        
+                                </select>
+                            </div>
+                        </div>
+
+                         <div class="form-group">
+                            <label for="role" class="col-md-4 control-label">Role</label>
+
+                            <div class="col-md-6">
+                                <select id="id_roles" class="form-control" name="role_id" required> 
+                                    <option value="1">Customer</option>
+                                    <option value="2">Merchant</option>        
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
                                     Register

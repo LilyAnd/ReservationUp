@@ -11,9 +11,6 @@
 	  			No.
 	  		</th>
 	    	<th>
-	    		ID Reservation
-	    	</th>
-	    	<th>
 	    		Customer Name
 	    	</th>
 	    	<th>
@@ -29,9 +26,7 @@
 			<td>
 				{{ $key + 1 }}<br/>
 			</td>	
-			<td>
-				{{$reservation->id_reservation}}<br/>
-			</td>
+
 			<td>
 				{{$reservation->id_customer}}<br/>
 			</td>

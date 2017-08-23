@@ -10,9 +10,9 @@ class Item extends Model
 	
 	public $timestamps = false;
 	
-    public function merchants()
+    public function admins()
     {
-    	return $this->hasOne('App\Merchant');
+    	return $this->hasOne('App\Admin');
     }
 
     public function reservations()

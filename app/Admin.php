@@ -9,17 +9,17 @@ class Admin extends Authenticatable
 {
     use Notifiable;
 
-    public function role()
-    {
-    	return $this->belongsToMany(role::class,'role_admins');
-    }
+    // public function role()
+    // {
+    // 	return $this->belongsToMany(role::class,'role_admins');
+    // }
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'id', 'name', 'email', 'password', 'id_roles'
     ];
 
     /**
@@ -31,10 +31,24 @@ class Admin extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function roles()
+    protected $primaryKey='id';
+
+    public $timestamps=false;
+    
+    public function items()
     {
-      return $this
-        ->belongsToMany('App\Role')
-        ->withTimestamps();
+        return $this->belongsToMany('App\Item');
     }
+
+    public function reservations()
+    {
+        return $this->belongsToMany('App\Reservation');
+    }
+
+    // public function roles()
+    // {
+    //   return $this
+    //     ->belongsToMany('App\Role')
+    //     ->withTimestamps();
+    // }
 }

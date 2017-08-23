@@ -8,12 +8,12 @@ class Reservation extends Model
 {
     public function customers()
     {
-    	return $this->hasOne('App\Customer');
+    	return $this->hasOne('App\User');
     }
 
     public function merchants()
     {
-    	return $this->hasOne('App\Merchant');
+    	return $this->hasOne('App\Admin');
     }
 
     public function items()

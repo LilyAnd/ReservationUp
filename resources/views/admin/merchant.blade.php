@@ -15,7 +15,7 @@
                     </div>
                 </div>    
 
-                    <div class="panel panel-default">
+                <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-th">
@@ -28,11 +28,6 @@
                             <table class="table">
                                 <tr>
                                     <td>
-                                        <a href="{{ route('item.create') }}">Tambah Item</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
                                         <a href="{{ route('item.index') }}">Lihat Item</a>
                                     </td>
                                 </tr>
@@ -41,7 +36,7 @@
                     </div>
                 </div>
                 
-                  <div class="panel panel-default">
+                <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="glyphicon glyphicon-user">
@@ -62,27 +57,15 @@
                 </div>
             </div>
         </div>
-    </div>
-    @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Merchant Dashboard</div>
 
-                    <div class="panel-body">
-                        You are logged in as Merchant!
-                    </div>
-                </div>
+         <div class="col-sm-3 col-md-9">
+            <div class="well">
+                <h1>
+                    Merchant Dashboard
+                </h1>
             </div>
         </div>
     </div>
-    @endsection
 </div>
 
 @endsection
-
-
-
-
-

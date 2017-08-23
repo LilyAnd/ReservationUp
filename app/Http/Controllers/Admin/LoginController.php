@@ -39,20 +39,20 @@ class LoginController extends Controller
         $this->middleware('guest:admin')->except('logout');
     }
 
-    protected function sendLoginResponse(Request $request)
-    {
-        $request->session()->regenerate();
+    // protected function sendLoginResponse(Request $request)
+    // {
+    //     $request->session()->regenerate();
 
-        $this->clearLoginAttempts($request);
+    //     $this->clearLoginAttempts($request);
  
-        foreach ($this->guard()->user()->role as $role) {
-            if($role->name == 'Admin') {
-                return redirect ('admin/home');
-            }elseif ($role->name == 'Merchant') {
-                return redirect ('admin/merchant');
-            }
-        }
-    }
+    //     foreach ($this->guard()->user()->role as $role) {
+    //         if($role->name == 'Admin') {
+    //             return redirect ('admin/home');
+    //         }elseif ($role->name == 'Merchant') {
+    //             return redirect ('admin/merchant');
+    //         }
+    //     }
+    // }
 
     /**
      * Show the application's login form.
