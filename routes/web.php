@@ -65,6 +65,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function()
 
 	Route::post('/update_profile', 'AdminController@postSetting')->name('admin.postSetting');
 
+	Route::get('/history-reservation','MerchantReservationController@history')->name('admin.history');
+
+	Route::get('/history-reservation/detail/{id_reservation}','MerchantReservationController@detail');
+
 });
 
 

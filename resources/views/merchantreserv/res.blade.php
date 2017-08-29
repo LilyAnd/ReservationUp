@@ -106,7 +106,6 @@
   
                         @foreach($reservations_items as $key => $val)
                         <tr>
-                            <!-- <td>{{$val->id_reservation}}</td> -->
                             <td>{{$key+1}}</td>
                             <td>{{$val->name}}</td>
                             <td>{{$val->item_name}}</td>
@@ -119,9 +118,7 @@
                                 @endif
                             </td>
                             <td>{{$val->alasan}}</td>
-                                <td><a href="{{ route('reservmerchant.edit', $val->id_reservation) }}" class="btn btn-info">Edit
-
-                            
+                                <td><a href="history-reservation/detail/{{$val->id_reservation}}" class="btn btn-info">Detail
                             </td>
                         </tr>
                         @endforeach

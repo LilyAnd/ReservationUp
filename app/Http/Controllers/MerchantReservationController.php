@@ -27,9 +27,44 @@ class MerchantReservationController extends Controller
         ->leftJoin ('reservations', 'reservations.id_reservation', '=', 'reservations_items.id_reservation')
         ->leftJoin('users', 'users.id', '=', 'reservations.id')
         ->where('id_admin', $id_user)
-        // ->groupBy('reservations.id_reservation')
+        ->select('items.item_name', 'reservations.id_reservation', 'users.name','reservations_items.reservation_status', 'reservations_items.alasan','reservations_items.quantity','reservations.reservation_date')
+        ->where('reservation_status', '=', null)
+        ->distinct('id_reservation', 'name')
         ->paginate(6);
+
         return view('merchantreserv.index',compact('reservations_items'));
+    }
+
+    public function history()
+    {
+        $id_user =Auth::User()->id;
+
+        $reservations_items = DB::table('reservations_items')
+        ->leftJoin ('items', 'items.id_item', '=', 'reservations_items.id_item')
+        ->leftJoin ('reservations', 'reservations.id_reservation', '=', 'reservations_items.id_reservation')
+        ->leftJoin('users', 'users.id', '=', 'reservations.id')
+        ->where('id_admin', $id_user)
+        ->select('items.item_name','reservations.id_reservation','users.name','reservations_items.reservation_status','reservations_items.alasan','reservations_items.quantity','reservations.reservation_date')
+        ->where('reservation_status', '=', 'Diterima' || 'reservation_status', '=', 'Ditolak')
+        ->distinct('id_reservation','name')
+        ->paginate(6);
+
+        return view('merchantreserv.res',compact('reservations_items'));
+    }
+
+    public function detail($id_reservation)
+    { 
+        $reservation=DB::table('reservations')
+        ->rightJoin ('users', 'users.id', '=', 'reservations.id')
+        ->where('reservations.id_reservation',$id_reservation)
+        ->get();
+        $reservations_items=DB::table('reservations_items')
+        ->leftJoin ('items', 'items.id_item', '=', 'reservations_items.id_item')
+        ->leftJoin ('reservations', 'reservations.id_reservation', '=', 'reservations_items.id_reservation')
+        ->where('reservations.id_reservation',$id_reservation)
+        ->get();
+
+        return view('merchantreserv.detailHistory',compact('reservations_items','reservation'));
     }
 
     /**

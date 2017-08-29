@@ -91,46 +91,69 @@
         <div class="col-sm-3 col-md-9">
             <div class="well">
                 <h1>Daftar Reservasi</h1>
-                    <table class="table table-striped">
-                        <tr>
-                            <!-- <th>ID Reservasi</th> -->
-                            <th>No</th>
-                            <th>Nama Customer</th>
-                            <th>Item</th>
-                            <th>Quantity</th>
-                            <th>Tanggal</th>
-                            <th>Status</th>
-                            <th>Alasan</th>
-                            <th>Action</th>
-                        </tr>
-  
-                        @foreach($reservations_items as $key => $val)
-                        <tr>
-                            <!-- <td>{{$val->id_reservation}}</td> -->
-                            <td>{{$key+1}}</td>
-                            <td>{{$val->name}}</td>
-                            <td>{{$val->item_name}}</td>
-                            <td>{{$val->quantity}}</td>
-                            <td>{{$val->reservation_date}}</td>
-                            <td>
-                                @if($val->reservation_status==null)
-                                Request
-                                @else {{$val->reservation_status}}
-                                @endif
-                            </td>
-                            <td>{{$val->alasan}}</td>
-                                <td><a href="{{ route('reservmerchant.edit', $val->id_reservation) }}" class="btn btn-info">Edit
+                @foreach($reservation as $value)
 
-                            
-                            </td>
-                        </tr>
-                        @endforeach
-                    </table>
-                    {{$reservations_items->links()}}
+                Nama Customer : <input type="hidden" name="name" value="{{ $value->name }}"><span>{{$value->name}}</span><br/>
+                No Telepon : <input type="hidden" name="phone_number" value="{{ $value->phone_number }}"><span>{{$value->phone_number}}</span><br/>
+                Alamat : <input type="hidden" name="address" value="{{ $value->address }}"><span>{{$value->address}}</span><br/>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-sm-3">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Detail Data</div>
+
+                                <div class="panel-body">
+                                    <form class="form-horizontal" role="form">
+                                    <input name="_method" type="hidden" value="PATCH">
+                                    {{ csrf_field() }}
+
+                                    <table class="table table-striped">
+                                        <tr>
+                                            <th>ID Reservasi</th>
+                                            <th>Item</th>
+                                            <th>Quantity</th>
+                                            <th>Tanggal</th>
+                                            <th>Total Harga</th>
+
+                                            <!-- <th>Status</th> -->
+                                        </tr>
+                                        @foreach($reservations_items as $key => $val)
+                                        <tr>
+                                            <td>{{$val->id_reservation}}</td>
+                                            <td>{{$val->item_name}}</td>
+                                            <td>{{$val->quantity}}</td>
+                                            <td>{{$val->reservation_date}}</td>
+                                            <td>
+                                                <input type="hidden" name="total_price" value="{{ $val->quantity*$val->item_price}}" ><span>{{$val->quantity*$val->item_price}}</span>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </table>
+                @endforeach
+
+                                    Total Bayar : 
+                                    <br>
+
+                                <div class="form-group{{ ($errors->has('reservation_status')) ? $errors->first('reservation_status') : '' }}" style="margin-left: 200px; width: 1000px">
+                                    <input type="hidden" name="reservation_status" class="col-md-4 control-label"  value="{{$val->reservation_status}}"><span>{{$val->reservation_status}}</span>
+                                    {!! $errors->first('reservation_status','<p class="help-block">:message</p>') !!}
+                                </div>
+
+                                <label style="margin-left: 200px">Alasan penolakan :</label>
+                                <div class="form-group{{ ($errors->has('alasan')) ? $errors->first('status') : '' }}" style="margin-left: 200px; width: 300px;" >
+                                    <input type="hidden" name="reservation_status" class="col-md-4 control-label"  value="{{$val->alasan}}"><span>{{$val->alasan}}</span>
+                                </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-        </div>  
-    </div>
-</div>
+        </div>
+        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
 
 @endsection
-
